@@ -49,7 +49,7 @@ public class Sabot implements Iterable<Carte>{
 	private class SabotIterateur implements Iterator<Carte> {
 		private int indiceIterateur = 0;
 		private boolean nextEffectue = false;
-		private int NbOperationReference = NbOperation;
+		private int nbOperationReference = NbOperation;
 		
 		@Override
 		public boolean hasNext() {
@@ -65,7 +65,7 @@ public class Sabot implements Iterable<Carte>{
 			Carte carte = cartes[indiceIterateur];
 			indiceIterateur++;
 			nextEffectue = true;
-			NbOperationReference++;NbOperation++;
+			nbOperationReference++;NbOperation++;
 			return carte;
 		}
 		
@@ -82,11 +82,11 @@ public class Sabot implements Iterable<Carte>{
 			nextEffectue = false;
 			indiceIterateur--;
 			nbCartes--;
-			NbOperationReference++;NbOperation++;
+			nbOperationReference++;NbOperation++;
 		}
 		
 		private void verificationConcurrence() {
-			if (NbOperation!=NbOperationReference) {
+			if (NbOperation!=nbOperationReference) {
 				throw new ConcurrentModificationException();
 			}
 		}

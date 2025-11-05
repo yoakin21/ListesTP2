@@ -1,4 +1,4 @@
-package testsFonctionnels;
+package testsfonctionnels;
 import java.util.Iterator;
 
 import cartes.Botte;
