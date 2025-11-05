@@ -19,6 +19,8 @@ public class GestionCartes {
 		if (liste.isEmpty())
 			return null;
 		int valeurRandom = random.nextInt(liste.size());
+		// TODO utiliser le constructeur du listIterator pour placer l'itérateur de
+		// manière aléatoire
 		ListIterator<E> listeItr = liste.listIterator();
 		for (int i = 0; i < valeurRandom; i++) {
 			listeItr.next();
@@ -68,26 +70,24 @@ public class GestionCartes {
 		return newListe;
 	}
 
-	
 	public static <E> boolean verifierRassemblement(List<E> liste) {
-		  if (liste == null || liste.size() <= 1)
-		   return true;
-
-		  ListIterator<E> iter1 = liste.listIterator();
-		  E precedent = iter1.next();
-
-		  while (iter1.hasNext()) {
-		   E courant = iter1.next();
-		   if (!courant.equals(precedent)) {
-		    ListIterator<E> iter2 = liste.listIterator(iter1.nextIndex());
-		    while (iter2.hasNext()) {
-		     if (precedent.equals(iter2.next())) {
-		      return false;
-		     }
-		    }
-		    precedent = courant;
-		   }
-		  }
-		  return true;
-		 }
+		if (liste == null || liste.size() <= 1)
+			return true;
+//TODO Passer par un for qui parcours le tas jusqu'à avoir un element différent puis transmettre à une autre méthode pour parcours depuis la position de l'itérateur en cours jusqu'à la fin du tableau
+		ListIterator<E> iter1 = liste.listIterator();
+		E precedent = iter1.next();
+		while (iter1.hasNext()) {
+			E courant = iter1.next();
+			if (!courant.equals(precedent)) {
+				ListIterator<E> iter2 = liste.listIterator(iter1.nextIndex());
+				while (iter2.hasNext()) {
+					if (precedent.equals(iter2.next())) {
+						return false;
+					}
+				}
+				precedent = courant;
+			}
+		}
+		return true;
+	}
 }
